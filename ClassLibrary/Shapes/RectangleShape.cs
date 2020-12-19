@@ -1,7 +1,4 @@
 ﻿using ClassLibrary.Sheets;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using static ClassLibrary.ExceptionsClass;
 
@@ -13,8 +10,14 @@ namespace ClassLibrary.Shapes
         private double width, height;   //Ширина и высота прямоугольника
         private Material material; //Материал 
 
-        private string type = "RectangleShape"; 
+        private string type = "RectangleShape"; //Тип фигуры
+        /// <summary>
+        /// Тип фигуры
+        /// </summary>
         public override string Type => type;
+        /// <summary>
+        /// Материал
+        /// </summary>
         public override Material Material => material;
 
         /// <summary>
@@ -97,7 +100,6 @@ namespace ClassLibrary.Shapes
             width *= koef;
             height *= koef;
         }
-
 
         /// <summary>
         /// Окрасить фигуру

@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-using System.Xml;
-using static ClassLibrary.Colors;
+﻿using static ClassLibrary.Colors;
 
 namespace ClassLibrary.Sheets
 {

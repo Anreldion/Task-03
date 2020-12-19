@@ -1,8 +1,5 @@
 ﻿using ClassLibrary.Sheets;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Xml;
 using static ClassLibrary.ExceptionsClass;
 
@@ -48,7 +45,7 @@ namespace ClassLibrary.Shapes
             this.c = c;
             this.material = cutting_shape.Material;
 
-            if(Area < cutting_shape.Area)
+            if (Area < cutting_shape.Area)
             {
                 cutting_shape.Cutting(Area);
             }
@@ -100,7 +97,7 @@ namespace ClassLibrary.Shapes
         {
             double old_area = Area;
             double new_area = old_area - area;
-            double koef = 1.0 - (1.0 - (new_area / old_area))/2;
+            double koef = 1.0 - (1.0 - (new_area / old_area)) / 2;
             a *= koef;
             b *= koef;
             c *= koef;
@@ -161,11 +158,11 @@ namespace ClassLibrary.Shapes
             xmlWriter.WriteAttributeString("B", b.ToString());
             xmlWriter.WriteAttributeString("C", c.ToString());
 
-            xmlWriter.WriteAttributeString("Material", Material.ToString());            
+            xmlWriter.WriteAttributeString("Material", Material.ToString());
             xmlWriter.WriteAttributeString("IsPainted", Material.IsPainted().ToString());
-            xmlWriter.WriteAttributeString("Color", Material.GetColor().ToString()); 
+            xmlWriter.WriteAttributeString("Color", Material.GetColor().ToString());
 
             xmlWriter.WriteEndElement();
         }
-    }                
+    }
 }

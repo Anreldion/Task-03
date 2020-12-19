@@ -46,7 +46,7 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape PlasticTriangle = new TriangleShape(2, 2, 2, Materials.Plastic);
+            TriangleShape PlasticTriangle = new TriangleShape(2, 2, 2, new Plastic());
             bool expected_Added = false;
             bool is_added;
             int expected_count = 1;
@@ -74,10 +74,10 @@ namespace ClassLibrary.Tests
             // Act 
             for (int i = 0; i < 20; i++)
             {
-                box.Add(new TriangleShape(a: i + 1, b: i + 1, c: i + 1, Materials.Paper));
+                box.Add(new TriangleShape(a: i + 1, b: i + 1, c: i + 1, new Paper()));
             }
 
-            box.Add(new TriangleShape(2, 2, 2, Materials.Film));
+            box.Add(new TriangleShape(2, 2, 2, new Film()));
         }
 
         /// <summary>
@@ -88,9 +88,9 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
-            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, Materials.Film);
-            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, Materials.Plastic);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
+            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, new Film());
+            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, new Plastic());
             triangle_2.Paint(Palette.Green);
             Palette expected_color = Palette.Green;
             string expected_type = "TriangleShape";
@@ -119,7 +119,7 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
             triangle_0.Paint(Palette.Green);
 
             // Act 
@@ -136,7 +136,7 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle = new TriangleShape(1, 1, 1, Materials.Paper);
+            TriangleShape triangle = new TriangleShape(1, 1, 1, new Paper());
             triangle.Paint(Palette.Green);
             int expected_count = 0;
             Palette expected_color = Palette.Green;
@@ -162,8 +162,8 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
-            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, Materials.Film);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
+            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, new Film());
             string expected_type = "TriangleShape";
 
             // Act
@@ -171,7 +171,7 @@ namespace ClassLibrary.Tests
             box.Replace(0, triangle_1);
 
             // Assert
-            Assert.AreEqual(Materials.Film, box[0].Material);
+            Assert.AreEqual("Film", box[0].Material.ToString());
             Assert.AreEqual(expected_type, box[0].Type);
         }
 
@@ -183,9 +183,9 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
-            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, Materials.Film);
-            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, Materials.Plastic);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
+            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, new Film());
+            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, new Plastic());
             double expected_area = 1.73;
 
             // Act
@@ -207,9 +207,9 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
-            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, Materials.Film);
-            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, Materials.Plastic);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
+            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, new Film());
+            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, new Plastic());
             double expected_total_perimeter = 18;
 
             // Act
@@ -232,9 +232,9 @@ namespace ClassLibrary.Tests
         {
             // Arrange
             Box box = new Box();
-            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, Materials.Paper);
-            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, Materials.Film);
-            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, Materials.Plastic);
+            TriangleShape triangle_0 = new TriangleShape(1, 1, 1, new Paper());
+            TriangleShape triangle_1 = new TriangleShape(2, 2, 2, new Film());
+            TriangleShape triangle_2 = new TriangleShape(3, 3, 3, new Plastic());
             double expected_total_area = 6.062;
 
             // Act

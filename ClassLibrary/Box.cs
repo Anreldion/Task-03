@@ -17,10 +17,11 @@ namespace ClassLibrary
         /// </summary>
         public Box()
         {
-
         }
-
-        private List<ShapeBase> container = new List<ShapeBase>(); //Контейнер
+        /// <summary>
+        /// Контейнер
+        /// </summary>
+        private List<ShapeBase> container = new List<ShapeBase>();
 
         /// <summary>
         /// Индексатор (Контейнер)

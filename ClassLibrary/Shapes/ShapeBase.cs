@@ -1,14 +1,12 @@
 ﻿using ClassLibrary.Sheets;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
 using System.Xml;
 using static ClassLibrary.Colors;
 
 namespace ClassLibrary
 {
-    public abstract class  ShapeBase
+    public abstract class ShapeBase
     {
         /// <summary>
         /// Конструктор без параметров

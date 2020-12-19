@@ -1,30 +1,35 @@
-﻿using System.Drawing;
-using System.IO;
-using System.Xml;
-using static ClassLibrary.Colors;
+﻿using static ClassLibrary.Colors;
 
 namespace ClassLibrary.Sheets
 {
     /// <summary>
-    /// 
+    /// Множественное окрашивание. Реализвация интерфейса
     /// </summary>
     public class ColoringMultiple : IColoration
     {
         private bool isPainted;
         private Palette color;
+        /// <summary>
+        /// Окрашено?
+        /// </summary>
         public bool IsPainted { get { return isPainted; } }
+        /// <summary>
+        /// Получить цвет
+        /// </summary>
         public Palette Color { get { return color; } }
 
-
-        public void Paint(Colors.Palette color)
+        /// <summary>
+        /// Окрасить
+        /// </summary>
+        /// <param name="color">Набор Palette</param>
+        public void Paint(Palette color)
         {
             isPainted = true;
             this.color = color;
         }
-
-        public void ToStreamWriter(StreamWriter streamWriter)
+        public override string ToString()
         {
-            throw new System.NotImplementedException();
+            return "ColoringMultiple";
         }
     }
 }
