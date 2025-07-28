@@ -1,4 +1,6 @@
-﻿namespace ClassLibrary.Sheets
+﻿using Shapes.ColorationInterface;
+
+namespace Shapes.Sheets
 {
     /// <summary>
     /// Фигуры из пленки бесцветные и красить их нельзя.

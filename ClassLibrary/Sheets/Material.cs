@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using static ClassLibrary.Colors;
+using Shapes.ColorationInterface;
+using static Shapes.Colors;
 
-namespace ClassLibrary.Sheets
+namespace Shapes.Sheets
 {
-
-    /// <summary>
-    /// Абстрактный класс - Материал.
-    /// </summary>
-    public abstract class Material
+   public abstract class Material
     {
         /// <summary>
         /// Поведение при окрашивании

@@ -1,6 +1,7 @@
-﻿using static ClassLibrary.Colors;
+﻿using Shapes.ColorationInterface;
+using static Shapes.Colors;
 
-namespace ClassLibrary.Sheets
+namespace Shapes.Sheets
 {
     /// <summary>
     /// Фигуры из пластика можно многократно перекрашивать. 
