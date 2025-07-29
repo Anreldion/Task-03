@@ -1,5 +1,5 @@
-﻿using Shapes.ColorationInterface;
-using static Shapes.Colors;
+﻿using Shapes.Enums;
+using Shapes.Exceptions;
 
 namespace Shapes.Sheets
 {
@@ -8,29 +8,15 @@ namespace Shapes.Sheets
     /// </summary>
     public class Paper : Material
     {
-        /// <summary>
-        /// Конструктор без параметров
-        /// </summary>
-        public Paper()
+        public Paper() { }
+        public override void Paint(Colors color)
         {
-            colorationBehaviour = new ColoringOnce();
-        }
-        /// <summary>
-        /// Конструктор с указанием цвета
-        /// </summary>
-        /// <param name="color"></param>
-        public Paper(Palette color)
-        {
-            colorationBehaviour = new ColoringOnce();
-            colorationBehaviour.Paint(color);
-        }
-        /// <summary>
-        /// Получить строковое представление материала
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            return "Paper";
+            if (IsPainted())
+            {
+                throw new PaintException("Paper is already painted.");
+            }
+
+            Color = color;
         }
     }
 }

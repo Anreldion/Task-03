@@ -1,4 +1,5 @@
-﻿using Shapes.ColorationInterface;
+﻿using Shapes.Enums;
+using Shapes.Exceptions;
 
 namespace Shapes.Sheets
 {
@@ -7,20 +8,10 @@ namespace Shapes.Sheets
     /// </summary>
     public class Film : Material
     {
-        /// <summary>
-        /// Конструктор без параметров
-        /// </summary>
-        public Film()
+        public Film() { }
+        public override void Paint(Colors color)
         {
-            colorationBehaviour = new NoColoring();
-        }
-        /// <summary>
-        /// Получить строковое представление материала
-        /// </summary>
-        /// <returns>Строковое представление материала</returns>
-        public override string ToString()
-        {
-            return "Film";
+            throw new PaintException("Film is not paintable");
         }
     }
 }
