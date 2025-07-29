@@ -5,7 +5,7 @@ namespace Shapes.Services.Interfaces
 {
     public interface IWriterService
     {
-        void Save(List<Shape> shapes);
-        List<Shape> Load();
+        void Save(string path, List<Shape> shapes);
+        List<Shape> Load(string path);
     }
 }

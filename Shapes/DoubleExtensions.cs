@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClassLibrary
+namespace Shapes
 {
     /// <summary>
     /// Дополнения для Double

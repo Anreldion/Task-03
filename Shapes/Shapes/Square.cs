@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Shapes.Enums;
 using Shapes.Sheets;
 
 namespace Shapes.Shapes
@@ -36,7 +36,7 @@ namespace Shapes.Shapes
             return area;
         }
 
-        public override void Paint(Colors.Palette color)
+        public override void Paint(Colors color)
         {
             _material.Paint(color);
         }

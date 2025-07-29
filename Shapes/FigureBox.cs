@@ -13,14 +13,10 @@ namespace Shapes
         private const int MaxCount = 20; 
         private const double Tolerance = 0.01;
         private readonly IWriterService _writerService;
-        private readonly ISerializer _serializer;
         private List<Shape> _figures = [];
 
-        public FigureBox() { }
-
-        public FigureBox(ISerializer serializer, IWriterService writerService)
+        public FigureBox(IWriterService writerService)
         {
-            _serializer = serializer;
             _writerService = writerService;
         }
         
@@ -44,12 +40,10 @@ namespace Shapes
         {
             if (index < 0 || _figures.Count <= index)
             {
-                throw new FigureNotFoundException("Запрашиваемый номер (" + index + ") превышает число элементов в колекции!", _figures.Count);
+                throw new FigureNotFoundException($"The requested number ({index}) exceeds the number of items in the collection!");
             }
-            else
-            {
-                return _figures[index];
-            }
+
+            return _figures[index];
 
         }
 
@@ -75,12 +69,10 @@ namespace Shapes
         {
             if (_figures.Count <= index)
             {
-                throw new FigureNotFoundException("Запрашиваемый номер (" + index + ") превышает число элементов в колекции!", _figures.Count);
+                throw new FigureNotFoundException($"The requested number ({index}) exceeds the number of items in the collection!");
             }
-            else
-            {
-                _figures[index] = shape;
-            }
+
+            _figures[index] = shape;
         }
 
         /// <summary>
@@ -114,7 +106,7 @@ namespace Shapes
         /// Получить суммарный периметр всех фигур
         /// </summary>
         /// <returns>Суммарный периметр</returns>
-        public double TotalPerimeter()
+        public double GetTotalPerimeter()
         {
             return _figures.Sum(item => item.GetPerimeter());
         }
@@ -122,8 +114,8 @@ namespace Shapes
         /// <summary>
         /// Получить суммарную площадь всех фигур
         /// </summary>
-        /// <returns>Сумарная площадь</returns>
-        public double TotalArea()
+        /// <returns>Суммарная площадь</returns>
+        public double GetTotalArea()
         {
             return _figures.Sum(item => item.GetArea());
         }
@@ -153,37 +145,32 @@ namespace Shapes
         /// <returns>List<Shape>, иначе null</returns>
         public List<Shape> GetNotPaintedPlasticShapes()
         {
-            var shapes = new List<Shape>();
-            foreach (var item in _figures)
-            {
-                if (item.Material.ToString() == "Plastic" && item.Material.IsPainted() == false)
-                {
-                    shapes.Add(item);
-                }
-            }
-            return shapes;
+            return _figures.Where(item => item.Material is Plastic && item.Material.IsPainted() == false).ToList();
         }
         public void Save(string fileName)
         {
-            _writerService.Save(_figures);
+            _writerService.Save(fileName, _figures);
         }
-        public void SaveFillShapes(string fileName)
+        public void SaveFilmShapes(string fileName)
         {
-            _writerService.Save(_figures);
+            var shapes = _figures.Where(item => item.Material is Film).ToList();
+            _writerService.Save(fileName, _figures);
         }
         public void SavePlasticShapes(string fileName)
         {
-            _writerService.Save(_figures);
+            var shapes = _figures.Where(item => item.Material is Plastic).ToList();
+            _writerService.Save(fileName, shapes);
         }
         public void SavePaperShapes(string fileName)
         {
-            _writerService.Save(_figures);
+            var shapes = _figures.Where(item => item.Material is Paper).ToList();
+            _writerService.Save(fileName, shapes);
         }
 
 
         public void LoadFromXml(string fileName)
         {
-            _figures =_writerService.Load();
+            _figures =_writerService.Load(fileName);
         }
 
         public override bool Equals(object obj)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Shapes.Enums;
 using Shapes.Sheets;
-using static Shapes.Colors;
 
 namespace Shapes.Shapes
 {
@@ -10,26 +10,13 @@ namespace Shapes.Shapes
         private const double Tolerance = 0.01;
         protected Shape() { }
 
-        /// <summary>
-        /// Материал фигуры
-        /// </summary>
         public abstract Material Material { get; }
 
-        /// <summary>
-        /// Площадь фигуры
-        /// </summary>
         public abstract double GetArea();
 
-        /// <summary>
-        /// Периметр фигуры
-        /// </summary>
         public abstract double GetPerimeter();
 
-        /// <summary>
-        /// Окрасить фигуру
-        /// </summary>
-        /// <param name="color">Цвет палитры</param>
-        public abstract void Paint(Palette color);
+        public abstract void Paint(Colors color);
         public override int GetHashCode()
         {
             return HashCode.Combine(Material, GetArea(), GetPerimeter());
@@ -47,7 +34,5 @@ namespace Shapes.Shapes
                    GetArea().EqualTo(@base.GetArea(), Tolerance) &&
                    GetPerimeter().EqualTo(@base.GetPerimeter(), Tolerance);
         }
-
-
     }
 }
