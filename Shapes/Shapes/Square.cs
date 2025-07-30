@@ -1,44 +1,47 @@
-﻿using Shapes.Enums;
-using Shapes.Sheets;
+﻿using Shapes.Sheets;
 
 namespace Shapes.Shapes
 {
+    /// <summary>
+    /// Represents a square shape defined by the length of its side.
+    /// </summary>
     public class Square : Shape
     {
-        private readonly double _side;
-        private readonly Material _material;
-        
-        public override Material Material => _material;
+        /// <summary>
+        /// Gets or sets the length of the side of the square.
+        /// </summary>
+        public double Side { get; set; }
 
+        /// <summary>
+        /// Gets the material the square is made from.
+        /// </summary>
+        public override Material Material { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Square"/> class.
+        /// Required for XML serialization.
+        /// </summary>
+        public Square() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Square"/> class with a given side length and material.
+        /// </summary>
+        /// <param name="side">Length of the side.</param>
+        /// <param name="material">Material of the square.</param>
         public Square(double side, Material material)
         {
-            _side = side;
-            _material = material;
-        }
-        
-        public override double GetPerimeter()
-        {
-            var perimeter = _side * 4;
-            if (double.IsNaN(perimeter))
-            {
-                return 0;
-            }
-            return perimeter;
+            Side = side;
+            Material = material;
         }
 
-        public override double GetArea()
-        {
-            var area = _side * _side;
-            if (double.IsNaN(area))
-            {
-                return 0;
-            }
-            return area;
-        }
+        /// <summary>
+        /// Calculates and returns the perimeter of the square.
+        /// </summary>
+        public override double GetPerimeter() => Side * 4;
 
-        public override void Paint(Colors color)
-        {
-            _material.Paint(color);
-        }
+        /// <summary>
+        /// Calculates and returns the area of the square.
+        /// </summary>
+        public override double GetArea() => Side * Side;
     }
 }
