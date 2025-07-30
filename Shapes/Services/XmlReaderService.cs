@@ -7,34 +7,32 @@ using Shapes.Shapes;
 
 namespace Shapes.Services
 {
-    public class XmlReaderService : IWriterService
+    public class XmlReaderService : ISaveLoadService
     {
-        private readonly ISerializer serializer;
-        private readonly XmlWriter writer;
-        private readonly XmlReader reader;
-        private const string FilePath = "shapes.xml";
+        private readonly ISerializer _serializer;
+        private readonly XmlWriterSettings _settings;
 
         public XmlReaderService(ISerializer serializer)
         {
-            this.serializer = serializer;
-            var settings = new XmlWriterSettings
+            _serializer = serializer;
+            _settings = new XmlWriterSettings
             {
                 Encoding = Encoding.UTF8,
-                OmitXmlDeclaration = true
+                OmitXmlDeclaration = true,
+                Indent = true
             };
-            writer = XmlWriter.Create(FilePath, settings);
-            reader = XmlReader.Create(FilePath);
         }
 
-        public void Save(List<Shape> shapes)
+        public void Save(string path, List<Shape> shapes)
         {
-            serializer.Serialize(writer, shapes);
+            using var writer = XmlWriter.Create(path, _settings);
+            _serializer.Serialize(writer, shapes);
         }
 
-        public List<Shape> Load()
+        public List<Shape> Load(string path)
         {
-            var shapes = serializer.Deserialize(reader);
-            return shapes.ToList();
+            using var reader = XmlReader.Create(path);
+            return _serializer.Deserialize(reader).ToList();
         }
     }
 }

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Shapes.Services.Interfaces;
+using Shapes.Shapes;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
-using Shapes.Services.Interfaces;
-using Shapes.Shapes;
 
 namespace Shapes.Services
 {
@@ -21,18 +22,19 @@ namespace Shapes.Services
 
         public IEnumerable<Shape> Deserialize(XmlReader reader)
         {
-            return _serializer.Deserialize(reader) as List<Shape>;
+            return _serializer.Deserialize(reader) as List<Shape> ?? Enumerable.Empty<Shape>();
         }
 
         public IEnumerable<Shape> Deserialize(StreamReader reader)
         {
-            return _serializer.Deserialize(reader) as List<Shape>;
+            return _serializer.Deserialize(reader) as List<Shape> ?? Enumerable.Empty<Shape>();
         }
 
         public void Serialize(XmlWriter writer, List<Shape> shapes)
         {
             _serializer.Serialize(writer, shapes);
         }
+
         public void Serialize(StreamWriter writer, List<Shape> shapes)
         {
             _serializer.Serialize(writer, shapes);

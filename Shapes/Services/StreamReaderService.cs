@@ -7,27 +7,25 @@ using Shapes.Shapes;
 
 namespace Shapes.Services
 {
-    public class StreamReaderService : IWriterService
+    public class StreamReaderService : ISaveLoadService
     {
         private readonly ISerializer _serializer;
-        private const string FilePath = "shapes.xml";
 
         public StreamReaderService(ISerializer serializer)
         {
-            this._serializer = serializer;
+            _serializer = serializer;
         }
 
-        public void Save(List<Shape> shapes)
+        public void Save(string path, List<Shape> shapes)
         {
-            using var streamWriter = new StreamWriter(FilePath, false, Encoding.UTF8);
-            _serializer.Serialize(streamWriter, shapes);
+            using var writer = new StreamWriter(path, false, Encoding.UTF8);
+            _serializer.Serialize(writer, shapes);
         }
 
-        public List<Shape> Load()
+        public List<Shape> Load(string path)
         {
-            using var streamReader = new StreamReader(FilePath, Encoding.UTF8);
-            var shapes = _serializer.Deserialize(streamReader);
-            return shapes.ToList();
+            using var reader = new StreamReader(path, Encoding.UTF8);
+            return _serializer.Deserialize(reader).ToList();
         }
     }
 }
