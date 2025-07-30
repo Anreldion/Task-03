@@ -3,12 +3,10 @@
 namespace Shapes.Sheets
 {
     /// <summary>
-    /// Фигуры из пластика можно многократно перекрашивать. 
+    /// Represents a material made of plastic, which can be painted and repainted.
     /// </summary>
     public class Plastic : Material
     {
-        public Plastic() { }
-
         public override void Paint(Colors color)
         {
             Color = color;

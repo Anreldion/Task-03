@@ -4,14 +4,13 @@ using Shapes.Exceptions;
 namespace Shapes.Sheets
 {
     /// <summary>
-    /// Фигуры из пленки бесцветные и красить их нельзя.
+    /// Represents a material made of film, which cannot be painted.
     /// </summary>
     public class Film : Material
     {
-        public Film() { }
         public override void Paint(Colors color)
         {
-            throw new PaintException("Film is not paintable");
+            throw new PaintException("Film is not paintable.");
         }
     }
 }
